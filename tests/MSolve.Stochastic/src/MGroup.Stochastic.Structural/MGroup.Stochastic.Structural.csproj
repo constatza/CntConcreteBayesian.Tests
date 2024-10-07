@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="StochasticRealizers\RandomVariable.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Accord.Math" Version="3.8.2-alpha" />
+    <PackageReference Include="MGroup.FEM.Structural" Version="0.2.0-unstable.129" />
+    <PackageReference Include="MGroup.NumericalAnalyzers.Discretization" Version="0.2.0-unstable.61" />
+    <PackageReference Include="MGroup.Solvers" Version="0.2.0-unstable.21" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\FEM-develop\src\MGroup.FEM.Structural\MGroup.FEM.Structural.csproj" />
+    <ProjectReference Include="..\..\..\MSolve.Multiscale-db7e753dddf0d64d94d8490ba4cf837fb46c109e\src\MGroup.Multiscale\MGroup.Multiscale.csproj" />
+    <ProjectReference Include="..\..\..\NumericalAnalyzers-develop\src\MGroup.NumericalAnalyzers.Discretization\MGroup.NumericalAnalyzers.Discretization.csproj" />
+    <ProjectReference Include="..\..\..\Solvers-develop\src\MGroup.Solvers\MGroup.Solvers.csproj" />
+    <ProjectReference Include="..\MGroup.Stochastic\MGroup.Stochastic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Update="StyleCop.Analyzers" Version="1.2.0-beta.435">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

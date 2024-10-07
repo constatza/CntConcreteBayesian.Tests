@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Product>MSolve</Product>
+    <Authors>Stefanos Pyrialakos, Yiannis Kalogeris, George Stavroulakis</Authors>
+    <Description>A set of interfaces and classes for machine learning algorithms</Description>
+    <PackageProjectUrl>http://mgroup.ntua.gr/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mgroupntua/MachineLearning</RepositoryUrl>
+    <PackageIconUrl>https://github.com/mgroupntua/MachineLearning/raw/develop/MGroupMachineLearning.png</PackageIconUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Convolution2DLayerParameter.cs" />
+    <Compile Remove="DenseLayerParameter.cs" />
+    <Compile Remove="INetworkLayerParameter.cs" />
+    <Compile Remove="INeuralNetwork.cs" />
+  </ItemGroup>
+
+</Project>

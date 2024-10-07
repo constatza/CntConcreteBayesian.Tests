@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Product>MSolve</Product>
+    <Authors>Stefanos Pyrialakos, Yiannis Kalogeris, George Stavroulakis</Authors>
+    <Description>A series of generic machine learning algorithms based on TensorFlow</Description>
+    <PackageProjectUrl>http://mgroup.ntua.gr/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mgroupntua/MachineLearning</RepositoryUrl>
+    <PackageIconUrl>https://github.com/mgroupntua/MachineLearning/raw/develop/MGroupMachineLearningTensorFlow.png</PackageIconUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Preprocessing\**" />
+    <EmbeddedResource Remove="Preprocessing\**" />
+    <None Remove="Preprocessing\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MGroup.LinearAlgebra" Version="0.1.0-unstable.79" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\TensorFlowNET.Keras\Tensorflow.Keras.csproj" />
+    <ProjectReference Include="..\MGroup.MachineLearning\MGroup.MachineLearning.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Accord.Statistics" Version="3.8.2-alpha" />
+    <PackageReference Include="MGroup.LinearAlgebra" Version="0.1.0-unstable.79" />
+  </ItemGroup>
+</Project>
