@@ -307,7 +307,7 @@ namespace MGroup.MachineLearning.TensorFlow.NeuralNetworks
 
         public void LoadNetwork(string netPath, string weightsPath, string normalizationPath)
         {
-			using (Stream stream = File.Open(normalizationPath, FileMode.Open))
+			using (Stream stream = File.Open(normalizationPath, FileMode.Open, FileAccess.Read, FileShare.Read))
 			{
 				var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 				var Normalization = (INormalization[])binaryFormatter.Deserialize(stream);
@@ -315,7 +315,7 @@ namespace MGroup.MachineLearning.TensorFlow.NeuralNetworks
 				NormalizationY = Normalization[1];
 			}
 
-			using (Stream stream = File.Open(netPath, FileMode.Open))
+			using (Stream stream = File.Open(netPath, FileMode.Open, FileAccess.Read, FileShare.Read))
 			{
 				var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 				NeuralNetworkLayer = (INetworkLayer[])binaryFormatter.Deserialize(stream);
