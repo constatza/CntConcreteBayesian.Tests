@@ -1,13 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Product>MSolve</Product>
     <Authors>Stefanos Pyrialakos, Yiannis Kalogeris, George Stavroulakis</Authors>
     <Description>A series of generic machine learning algorithms based on TensorFlow</Description>
     <PackageProjectUrl>http://mgroup.ntua.gr/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mgroupntua/MachineLearning</RepositoryUrl>
     <PackageIconUrl>https://github.com/mgroupntua/MachineLearning/raw/develop/MGroupMachineLearningTensorFlow.png</PackageIconUrl>
+    <EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
   </PropertyGroup>
 
   <ItemGroup>

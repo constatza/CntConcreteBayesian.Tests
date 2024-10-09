@@ -409,8 +409,9 @@ namespace MGroup.CntConcreteBayesian.Tests.Integration
 
 		private static IProbabilityDistributionSampler InitializeSimulation()
 		{
+			var pathToData = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "../../../");
 			var model = new ConcreteHierarchicalModels();
-			model.InitializeModels();
+			model.InitializeModels(pathToData);
 			//var cementResponse = model.FormulateCementProblem(new double[] { 10, 1, 0.1 });
 			//var mortarResponse = model.FormulateMortarProblem(new double[] { 10, 1, 0.1 });
 			//var concreteResponse = model.FormulateConcreteProblem(new double[] { 10, 1, 0.1 });

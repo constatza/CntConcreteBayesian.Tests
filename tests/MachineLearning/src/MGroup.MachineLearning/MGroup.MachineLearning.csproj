@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Product>MSolve</Product>
     <Authors>Stefanos Pyrialakos, Yiannis Kalogeris, George Stavroulakis</Authors>
     <Description>A set of interfaces and classes for machine learning algorithms</Description>

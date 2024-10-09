@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-
+    <TargetFramework>net8.0</TargetFramework>
     <IsPackable>false</IsPackable>
+    <EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +26,11 @@
     <ProjectReference Include="..\MachineLearning\src\MGroup.Constitutive.Structural.MachineLearning\MGroup.Constitutive.Structural.MachineLearning.csproj" />
     <ProjectReference Include="..\MSolve.Multiscale-db7e753dddf0d64d94d8490ba4cf837fb46c109e\src\MGroup.Multiscale\MGroup.Multiscale.csproj" />
     <ProjectReference Include="..\MSolve.Stochastic\src\MGroup.Stochastic\MGroup.Stochastic.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Reference Include="./dlls/*.dll" />
+    
   </ItemGroup>
 
 </Project>

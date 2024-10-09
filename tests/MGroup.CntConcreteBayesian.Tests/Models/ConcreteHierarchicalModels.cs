@@ -50,10 +50,9 @@ namespace MGroup.CntConcreteBayesian.Tests.Models
         private int[][] concreteRenumbering;
         private FeedForwardNeuralNetwork concreteNeuralNetwork;
 
-        public void InitializeModels()
+        public void InitializeModels(string initialPath)
         {
             //import model information from abaqus
-            var initialPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).Split(new string[] { "\\bin" }, StringSplitOptions.None)[0];
             var folderName = "DataFiles";
             var inputFileName = "CementCnt.inp";
             var pathName = Path.Combine(initialPath, folderName);
@@ -64,7 +63,6 @@ namespace MGroup.CntConcreteBayesian.Tests.Models
             string[] setNames = new string[] { "Constraints", "Loads", "Monitor" };
             (cementNodes, cementElements, cementSets) = AbaqusReader.ReadFile(inputFile, setNames);
 
-            initialPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).Split(new string[] { "\\bin" }, StringSplitOptions.None)[0];
             folderName = "DataFiles";
             var netPathName = "cement_network_architecture";
             netPathName = Path.Combine(initialPath, folderName, netPathName);
@@ -76,7 +74,6 @@ namespace MGroup.CntConcreteBayesian.Tests.Models
             cementNeuralNetwork = new FeedForwardNeuralNetwork();
             cementNeuralNetwork.LoadNetwork(netPathName, weightsPathName, normalizationPathName);
 
-            initialPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).Split(new string[] { "\\bin" }, StringSplitOptions.None)[0];
             folderName = "DataFiles";
             inputFileName = "MortarTensile.inp";
             pathName = Path.Combine(initialPath, folderName);
@@ -87,7 +84,6 @@ namespace MGroup.CntConcreteBayesian.Tests.Models
             setNames = new string[] { "Constraints", "Loads", "Monitor" };
             (mortarNodes, mortarElements, mortarSets) = AbaqusReader.ReadFile(inputFile, setNames);
 
-            initialPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).Split(new string[] { "\\bin" }, StringSplitOptions.None)[0];
             folderName = "DataFiles";
             netPathName = "mortar_network_architecture";
             netPathName = Path.Combine(initialPath, folderName, netPathName);
@@ -99,7 +95,6 @@ namespace MGroup.CntConcreteBayesian.Tests.Models
             mortarNeuralNetwork = new FeedForwardNeuralNetwork();
             mortarNeuralNetwork.LoadNetwork(netPathName, weightsPathName, normalizationPathName);
 
-            initialPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).Split(new string[] { "\\bin" }, StringSplitOptions.None)[0];
             folderName = "DataFiles";
             inputFileName = "ReinfConcrBeam.inp";
             pathName = Path.Combine(initialPath, folderName);
@@ -110,7 +105,6 @@ namespace MGroup.CntConcreteBayesian.Tests.Models
             setNames = new string[] { "Constraints", "Loads", "Monitor" };
             (concreteNodes, concreteElements, concreteSets) = AbaqusReader.ReadFile(inputFile, setNames);
 
-            initialPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).Split(new string[] { "\\bin" }, StringSplitOptions.None)[0];
             folderName = "DataFiles";
             netPathName = "concrete_network_architecture";
             netPathName = Path.Combine(initialPath, folderName, netPathName);
@@ -389,7 +383,7 @@ namespace MGroup.CntConcreteBayesian.Tests.Models
 
         private TotalDisplacementsPerIncrementLog SolveCementModel(Model model)
         {
-            var solverFactory = new SuiteSparseSolver.Factory();
+            var solverFactory = new CSparseLUSolver.Factory();
             var algebraicModel = solverFactory.BuildAlgebraicModel(model);
             var solver = solverFactory.BuildSolver(algebraicModel);
             var problem = new ProblemStructural(model, algebraicModel);

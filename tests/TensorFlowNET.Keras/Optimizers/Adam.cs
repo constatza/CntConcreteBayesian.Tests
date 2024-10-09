@@ -66,7 +66,8 @@ namespace Tensorflow.Keras.Optimizers
 
         protected override Operation _resource_apply_dense(IVariableV1 var, Tensor grad, Dictionary<DeviceDType, Dictionary<string, Tensor>> apply_state)
         {
-            var (var_device, var_dtype) = (var.Device, var.dtype.as_base_dtype());
+            var var_device = var.Device;
+            var var_dtype = var.dtype.as_base_dtype();
             var coefficients = apply_state.FirstOrDefault(x => x.Key.Device == var_device && x.Key.DType == var_dtype).Value ?? _fallback_apply_state(var_device, var_dtype);
             var m = get_slot(var, "m");
             var v = get_slot(var, "v");

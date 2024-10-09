@@ -19,34 +19,39 @@ namespace MGroup.CntConcreteBayesian.Tests.Integration
 {
     public class ConcreteMonteCarloTest
     {
-        [Fact]
-        public static void RunSimulation()
+        [Theory]
+        [InlineData("../../../")]
+        public static void RunSimulation(string pathToData, int numParameterSamples = 10)
         {
             var model = new ConcreteHierarchicalModels();
-            model.InitializeModels();
+            model.InitializeModels(pathToData);
             Func<double[], double[]> cementModel = model.FormulateCementProblem;
             Func<double[], double[]> mortarModel = model.FormulateMortarProblem;
             Func<double[], double[]> concreteModel = model.FormulateConcreteProblem;
-            MultivariateUniformDistribution multivariateUniformDistribution = new MultivariateUniformDistribution(new double[] { 0, 0, 0 }, new double[] { 30, 3, 0.3 });
+            MultivariateUniformDistribution multivariateUniformDistribution =
+                new MultivariateUniformDistribution(new double[] { 0, 0, 0 }, new double[] { 30, 3, 0.3 });
 
-            var cementSampler = new MonteCarlo(multivariateUniformDistribution.Dimension, cementModel, multivariateUniformDistribution);
-            var mortarSampler = new MonteCarlo(multivariateUniformDistribution.Dimension, mortarModel, multivariateUniformDistribution);
-            var concreteSampler = new MonteCarlo(multivariateUniformDistribution.Dimension, concreteModel, multivariateUniformDistribution);
-
-            var numParameterSamples = 10;
+            var cementSampler = new MonteCarlo(multivariateUniformDistribution.Dimension, cementModel,
+                multivariateUniformDistribution);
+            var mortarSampler = new MonteCarlo(multivariateUniformDistribution.Dimension, mortarModel,
+                multivariateUniformDistribution);
+            var concreteSampler = new MonteCarlo(multivariateUniformDistribution.Dimension, concreteModel,
+                multivariateUniformDistribution);
 
             var cementSamples = GenerateCementSamples(numParameterSamples, cementSampler);
             var mortarSamples = GenerateMortarSamples(numParameterSamples, mortarSampler);
             var concreteSamples = GenerateConcreteSamples(numParameterSamples, concreteSampler);
         }
 
-        private static double[,] GenerateCementSamples(int numParameterSamples, IProbabilityDistributionSampler cementSampler)
+
+        private static double[,] GenerateCementSamples(int numParameterSamples, IProbabilityDistributionSampler cementSampler, string BasePath = "../../../")
         {
             var cementSamples = cementSampler.GenerateSamples(numParameterSamples);
-            var BasePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).Split(new string[] { "\\bin" }, StringSplitOptions.None)[0];
-            var folderName = "DataFiles";
+            var folderName = "Output";
             var inputFileName = "cementSamples.txt";
             var filePathName = Path.Combine(BasePath, folderName, inputFileName);
+            // Create the directory if it doesn't exist
+            Directory.CreateDirectory(Path.Combine(BasePath, folderName));
 
             // Create a StreamWriter to write to the file
             using (StreamWriter writer = new StreamWriter(filePathName))

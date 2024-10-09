@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tensorflow.Binding", "tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tensorflow.Keras", "tests\TensorFlowNET.Keras\Tensorflow.Keras.csproj", "{E035A177-CBC6-492D-9047-9985E6CD9090}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialStochastic", "MaterialStochastic\MaterialStochastic.csproj", "{6FA00D40-9B74-4C7F-8153-88D28BD48675}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +127,18 @@ Global
 		{E035A177-CBC6-492D-9047-9985E6CD9090}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E035A177-CBC6-492D-9047-9985E6CD9090}.Release|x64.ActiveCfg = Release|x64
 		{E035A177-CBC6-492D-9047-9985E6CD9090}.Release|x64.Build.0 = Release|x64
+		{6FA00D40-9B74-4C7F-8153-88D28BD48675}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FA00D40-9B74-4C7F-8153-88D28BD48675}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FA00D40-9B74-4C7F-8153-88D28BD48675}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6FA00D40-9B74-4C7F-8153-88D28BD48675}.Debug|x64.Build.0 = Debug|Any CPU
+		{6FA00D40-9B74-4C7F-8153-88D28BD48675}.GPU|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FA00D40-9B74-4C7F-8153-88D28BD48675}.GPU|Any CPU.Build.0 = Debug|Any CPU
+		{6FA00D40-9B74-4C7F-8153-88D28BD48675}.GPU|x64.ActiveCfg = Debug|Any CPU
+		{6FA00D40-9B74-4C7F-8153-88D28BD48675}.GPU|x64.Build.0 = Debug|Any CPU
+		{6FA00D40-9B74-4C7F-8153-88D28BD48675}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FA00D40-9B74-4C7F-8153-88D28BD48675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FA00D40-9B74-4C7F-8153-88D28BD48675}.Release|x64.ActiveCfg = Release|Any CPU
+		{6FA00D40-9B74-4C7F-8153-88D28BD48675}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
