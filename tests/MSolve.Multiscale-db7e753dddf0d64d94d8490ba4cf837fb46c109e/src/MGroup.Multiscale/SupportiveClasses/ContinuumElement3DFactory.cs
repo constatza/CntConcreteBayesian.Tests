@@ -8,6 +8,7 @@ using MGroup.MSolve.Discretization;
 using MGroup.MSolve.Discretization.Entities;
 using MGroup.MSolve.Numerics;
 using MGroup.FEM.Structural.Continuum;
+using Group.Multiscale.SupportiveClasses;
 
 namespace MGroup.Multiscale.SupportiveClasses
 {
@@ -127,12 +128,12 @@ namespace MGroup.Multiscale.SupportiveClasses
 			this.commonMaterial = commonMaterial;
 		}
 
-		public ContinuumElement3D CreateElement(CellType cellType, IReadOnlyList<INode> nodes)
+		public Group.Multiscale.SupportiveClasses.ContinuumElement3D CreateElement(CellType cellType, IReadOnlyList<INode> nodes)
 		{
 			return CreateElement(cellType, nodes, commonMaterial, commonDynamicProperties);
 		}
 
-		public ContinuumElement3D CreateElement(CellType cellType, IReadOnlyList<INode> nodes,
+		public Group.Multiscale.SupportiveClasses.ContinuumElement3D CreateElement(CellType cellType, IReadOnlyList<INode> nodes,
 			IContinuumMaterial3D commonMaterial, ITransientAnalysisProperties commonDynamicProperties)
 		{
 			int numGPs = integrationsForStiffness[cellType].IntegrationPoints.Count;
@@ -147,14 +148,14 @@ namespace MGroup.Multiscale.SupportiveClasses
 			return new ContinuumElement3DNonLinear(nodes, commonMaterial, integrationsForStiffness[cellType], interpolations[cellType]);
 		}
 
-		private ContinuumElement3D CreateElement(CellType cellType, IReadOnlyList<INode> nodes,
+		private Group.Multiscale.SupportiveClasses.ContinuumElement3D CreateElement(CellType cellType, IReadOnlyList<INode> nodes,
 			IReadOnlyList<IContinuumMaterial3D> materialsAtGaussPoints, ITransientAnalysisProperties commonDynamicProperties)
 		{
 			//TODO: check if nodes - interpolation and Gauss points - materials match
 #if DEBUG
 			interpolations[cellType].CheckElementNodes(nodes);
 #endif
-			return new ContinuumElement3D(nodes, interpolations[cellType],
+			return new Group.Multiscale.SupportiveClasses.ContinuumElement3D(nodes, interpolations[cellType],
 				integrationsForStiffness[cellType], integrationsForMass[cellType], extrapolations[cellType],
 				materialsAtGaussPoints, commonDynamicProperties);
 		}

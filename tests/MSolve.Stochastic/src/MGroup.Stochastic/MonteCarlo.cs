@@ -8,8 +8,8 @@ using DotNumerics.Optimization;
 
 namespace MGroup.Stochastic
 {
-    public class MonteCarlo
-    {
+    public class MonteCarlo : IProbabilityDistributionSampler
+	{
 		public int NumModelParameters { get; }
 		public Func<double[], double[]> Model { get; }
 		public ISampleableDistribution<double[]> Distribution { get; }
