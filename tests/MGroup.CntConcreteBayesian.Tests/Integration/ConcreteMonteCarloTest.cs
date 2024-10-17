@@ -21,7 +21,7 @@ namespace MGroup.CntConcreteBayesian.Tests.Integration
     {
         [Theory]
         [InlineData("../../../")]
-        public static void RunSimulation(string pathToData, int numParameterSamples = 10)
+        public static void RunSimulation(string pathToData, int numParameterSamples = 10, string whichModel = "cement")
         {
             var model = new ConcreteHierarchicalModels();
             model.InitializeModels(pathToData);
@@ -30,17 +30,28 @@ namespace MGroup.CntConcreteBayesian.Tests.Integration
             Func<double[], double[]> concreteModel = model.FormulateConcreteProblem;
             MultivariateUniformDistribution multivariateUniformDistribution =
                 new MultivariateUniformDistribution(new double[] { 0, 0, 0 }, new double[] { 30, 3, 0.3 });
+            
+            switch (whichModel)
+            {
+                case "cement":
+                    var cementSampler = new MonteCarlo(multivariateUniformDistribution.Dimension, cementModel,
+                        multivariateUniformDistribution);
+                    var cementSamples = GenerateCementSamples(numParameterSamples, cementSampler);
+                    break;
+                case "mortar":
+                    var mortarSampler = new MonteCarlo(multivariateUniformDistribution.Dimension, mortarModel,
+                        multivariateUniformDistribution);
+                    var mortarSamples = GenerateMortarSamples(numParameterSamples, mortarSampler);
+                    break;
+                case "concrete":
+                    var concreteSampler = new MonteCarlo(multivariateUniformDistribution.Dimension, concreteModel,
+                        multivariateUniformDistribution);
 
-            var cementSampler = new MonteCarlo(multivariateUniformDistribution.Dimension, cementModel,
-                multivariateUniformDistribution);
-            var mortarSampler = new MonteCarlo(multivariateUniformDistribution.Dimension, mortarModel,
-                multivariateUniformDistribution);
-            var concreteSampler = new MonteCarlo(multivariateUniformDistribution.Dimension, concreteModel,
-                multivariateUniformDistribution);
-
-            var cementSamples = GenerateCementSamples(numParameterSamples, cementSampler);
-            var mortarSamples = GenerateMortarSamples(numParameterSamples, mortarSampler);
-            var concreteSamples = GenerateConcreteSamples(numParameterSamples, concreteSampler);
+                    var concreteSamples = GenerateConcreteSamples(numParameterSamples, concreteSampler);
+                    break;
+                    
+            }
+            
         }
 
 
